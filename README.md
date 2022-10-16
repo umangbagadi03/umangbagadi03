@@ -3,6 +3,11 @@
 <h1><img src="https://emojis.slackmojis.com/emojis/images/1531849430/4246/blob-sunglasses.gif?1531849430" width="30"/> Hey! Nice to see you.</h1>
 <h1 align="center">I'm Umang</h1>
 
+<p align="center">
+  <samp> 
+    <img src = "https://octodex.github.com/images/daftpunktocat-thomas.gif" align = "right" width = 250, height = 250>
+     <br>
+
 ![](https://komarev.com/ghpvc/?username=umangbagadi03&color=green) 
 
 ### I have technical experience and interest in -
