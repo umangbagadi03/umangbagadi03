@@ -1,7 +1,21 @@
 
 
 <h1><img src="https://emojis.slackmojis.com/emojis/images/1531849430/4246/blob-sunglasses.gif?1531849430" width="30"/> Hey! Nice to see you.</h1>
-<h1 align="center">I'm Umang</h1>
+
+<!-- Horizontal Divider -->
+  <img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif">
+  
+  <!-- Introduction -->
+  <div id="user-content-toc">
+    <ul align="center">
+      <summary><h1 style="display: inline-block">Hi 👋, I'm Umang</h1></summary>
+    </ul>
+  </div>
+  
+  <!-- Snake Animation -->
+  <div align="center">
+    <img src="https://github.com/1999AZZAR/1999AZZAR/blob/main/resources/img/grid-snake.svg" alt="snake" />
+  </div>
 
 <p align="center">
   <samp> 
