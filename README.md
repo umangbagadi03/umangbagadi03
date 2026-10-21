@@ -1,6 +1,6 @@
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/hero-dark.svg">
-  <img alt="Umang Bagadi. I build LLM agents that prove their work before they act. An agent trace runs: the LLM proposes a root cause, code checks the claim against evidence, code checks policy, a human approves, code verifies recovery." src="assets/hero-light.svg" width="100%">
+  <img alt="Umang Bagadi. I build LLM agents that prove their work before they act. AI engineer working on LLM agents, RAG and evals; currently building multi-agent systems, RAG pipelines, evals and guardrails. B.Tech in Artificial Intelligence, Nagpur, India." src="assets/hero-light.svg" width="100%">
 </picture>
 
 <p align="center">

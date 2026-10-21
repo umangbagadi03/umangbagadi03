@@ -69,118 +69,85 @@ def frame(t, h, dots=True):
 
 # --------------------------------------------------------------------- hero
 
-TRACE = [
-    # role, verb, message, outcome
-    ("llm", "propose", "root cause: connection pool exhausted on orders-db", "? hypothesis"),
-    ("code", "ground", "claim E2 is backed by the evidence it cites", "✓ grounded"),
-    ("code", "policy", "restart orders-api · blast radius 1 of 6 replicas", "✓ allowed"),
-    ("human", "approve", "waiting for a human before anything changes", "APPROVE"),
-    ("code", "verify", "p95 latency back under SLO for 5 minutes", "✓ resolved"),
+PROFILE = [
+    ("role", "AI engineer · LLM agents, RAG and evals"),
+    ("focus", "agents that check their own work before they act"),
+    ("building", None),  # rotates through BUILDING
+    ("studying", "B.Tech in Artificial Intelligence"),
+    ("based in", "Nagpur, India"),
+]
+BUILDING = [
+    "multi-agent systems",
+    "RAG pipelines with citations",
+    "LLM evals and guardrails",
+    "MCP tools for agents",
+    "human-in-the-loop workflows",
 ]
 
 
 def hero(t):
-    h = 424
-    cycle = 14.0
-    fs = 13
-    ch = fs * MONO_CH
-    x0, y0, lh = 40, 262, 27
-    cols = 92  # total characters per trace line
+    h = 400
+    fs = 14
+    x0, xv, y0, lh = 40, 150, 222, 30
 
-    css = base_style(t) + f"""
-@keyframes pulse{{0%,100%{{opacity:1}}50%{{opacity:.25}}}}
-@keyframes blink{{0%,49%{{opacity:1}}50%,100%{{opacity:0}}}}
-.pulse{{animation:pulse 1.6s ease-in-out infinite}}
-.cursor{{animation:blink 1s step-end infinite}}
+    css = base_style(t) + """
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.25}}
+@keyframes blink{0%,49%{opacity:1}50%,100%{opacity:0}}
+@keyframes in{from{opacity:0;transform:translateX(-6px)}to{opacity:1;transform:none}}
+.pulse{animation:pulse 1.6s ease-in-out infinite}
+.cursor{animation:blink 1s step-end infinite}
 """
     body = [frame(t, h)]
 
-    # top bar
     body.append(
         f'<text x="{x0}" y="44" class="mono faint" font-size="12">~/umangbagadi03 '
-        f'<tspan class="muted">$</tspan> <tspan class="text">agent run --until verified</tspan></text>'
+        f'<tspan class="muted">$</tspan> <tspan class="text">whoami</tspan></text>'
         f'<circle cx="{W-112}" cy="40" r="4" class="human pulse"/>'
         f'<text x="{W-100}" y="44" class="mono muted" font-size="12">building</text>'
-    )
-
-    # name + tagline
-    body.append(
         f'<text x="{x0-2}" y="112" class="sans text" font-size="50" font-weight="700" '
         f'letter-spacing="-1.5">Umang Bagadi</text>'
         f'<text x="{x0}" y="150" class="sans muted" font-size="19">I build LLM agents that '
         f'<tspan class="gold" font-weight="600">prove their work</tspan> before they act.</text>'
-        f'<text x="{x0}" y="178" class="mono faint" font-size="12.5">AI engineer · B.Tech in Artificial '
-        f'Intelligence · Nagpur, India</text>'
+        f'<line x1="{x0}" x2="{W-x0}" y1="{y0-36}" y2="{y0-36}" stroke="{t["line"]}"/>'
     )
 
-    # trace header + rule
-    body.append(
-        f'<line x1="{x0}" x2="{W-x0}" y1="{y0-30}" y2="{y0-30}" stroke="{t["line"]}"/>'
-        f'<text x="{x0}" y="{y0-38}" class="mono faint" font-size="11" letter-spacing="1.5">'
-        f"TRACE · incident #4127</text>"
-        f'<text x="{W-x0}" y="{y0-38}" class="mono faint" font-size="11" text-anchor="end" '
-        f'letter-spacing="1.5">LLM PROPOSES · CODE DECIDES</text>'
-    )
-
-    # trace lines, revealed one by one on a loop
-    start, step, hold_until = 0.5, 1.5, 12.6
-    for i, (role, verb, msg, outcome) in enumerate(TRACE):
+    for i, (key, value) in enumerate(PROFILE):
         y = y0 + i * lh
-        t_in = start + i * step
-        a = t_in / cycle * 100
-        b = (t_in + 0.25) / cycle * 100
-        c = hold_until / cycle * 100
-        d = (hold_until + 0.5) / cycle * 100
-        css += (
-            f"@keyframes l{i}{{0%,{a:.2f}%{{opacity:0;transform:translateX(-6px)}}"
-            f"{b:.2f}%,{c:.2f}%{{opacity:1;transform:none}}{d:.2f}%,100%{{opacity:0}}}}"
-            f".l{i}{{animation:l{i} {cycle}s linear infinite}}"
+        g = (
+            f'<g style="animation:in .45s ease-out {0.3 + i*0.35:.2f}s both">'
+            f'<text x="{x0}" y="{y}" class="mono gold" font-size="{fs}">›</text>'
+            f'<text x="{x0+20}" y="{y}" class="mono faint" font-size="{fs}">{escape(key)}</text>'
         )
-        prefix = f"{i+1:02d}  {role:<6} {verb:<8} {msg} "
-        tail = "✓ approved" if role == "human" else outcome
-        pad = cols - len(prefix) - len(tail) - 2
-        leader = "." * max(pad, 3)
-        g = [f'<g class="l{i}">']
-        g.append(
-            f'<text x="{x0}" y="{y}" class="mono" font-size="{fs}" xml:space="preserve">'
-            f'<tspan class="faint">{i+1:02d}  </tspan>'
-            f'<tspan class="{role}" font-weight="600">{role:<6}</tspan> '
-            f'<tspan class="text">{verb:<8}</tspan> '
-            f'<tspan class="muted">{escape(msg)} </tspan>'
-            f'<tspan class="faint">{leader}</tspan></text>'
-        )
-        tx = x0 + (cols - 1) * ch
-        if role == "human":
-            # "waiting" flips to "approved" a beat after the line appears
-            w_on, w_off = t_in / cycle * 100, (t_in + 1.1) / cycle * 100
-            css += (
-                f"@keyframes wait{{0%,{w_on:.2f}%{{opacity:1}}{w_off:.2f}%,100%{{opacity:0}}}}"
-                f"@keyframes ok{{0%,{w_off:.2f}%{{opacity:0}}{w_off+0.5:.2f}%,100%{{opacity:1}}}}"
-                f".wait{{animation:wait {cycle}s step-end infinite}}"
-                f".ok{{animation:ok {cycle}s linear infinite}}"
-            )
-            g.append(
-                f'<text x="{tx}" y="{y}" class="mono human wait" font-size="{fs}" '
-                f'text-anchor="end" opacity="0">◌ waiting</text>'
-                f'<text x="{tx}" y="{y}" class="mono human ok" font-size="{fs}" '
-                f'text-anchor="end" font-weight="600">✓ approved</text>'
-            )
+        if value is not None:
+            g += f'<text x="{xv}" y="{y}" class="mono text" font-size="{fs}">{escape(value)}</text>'
         else:
-            cls = "human" if outcome.startswith("✓") else "llm"
-            g.append(
-                f'<text x="{tx}" y="{y}" class="mono {cls}" font-size="{fs}" '
-                f'text-anchor="end" font-weight="600">{escape(outcome)}</text>'
-            )
-        g.append("</g>")
-        body.append("".join(g))
+            n, per = len(BUILDING), 2.4
+            cycle = n * per
+            for k, word in enumerate(BUILDING):
+                a0 = k * per / cycle * 100
+                a1 = a0 + 0.3 / cycle * 100
+                a2 = (k + 1) * per / cycle * 100 - 0.3 / cycle * 100
+                a3 = (k + 1) * per / cycle * 100
+                css += (
+                    f"@keyframes w{k}{{0%,{a0:.2f}%{{opacity:0;transform:translateY(6px)}}"
+                    f"{a1:.2f}%,{a2:.2f}%{{opacity:1;transform:none}}"
+                    f"{a3:.2f}%,100%{{opacity:0;transform:translateY(-6px)}}}}"
+                    f".w{k}{{opacity:{1 if k == 0 else 0};animation:w{k} {cycle}s linear infinite}}"
+                )
+                g += (
+                    f'<text x="{xv}" y="{y}" class="mono llm w{k}" font-size="{fs}" '
+                    f'font-weight="600">{escape(word)}</text>'
+                )
+        body.append(g + "</g>")
 
-    # prompt + cursor under the trace
-    yc = y0 + len(TRACE) * lh + 4
+    yc = y0 + len(PROFILE) * lh
     body.append(
-        f'<text x="{x0}" y="{yc}" class="mono muted" font-size="{fs}">›</text>'
-        f'<rect x="{x0 + 2*ch}" y="{yc-11}" width="{ch:.1f}" height="14" class="gold cursor"/>'
+        f'<text x="{x0}" y="{yc}" class="mono gold" font-size="{fs}">›</text>'
+        f'<rect x="{x0+20}" y="{yc-12}" width="{fs*MONO_CH:.1f}" height="15" class="gold cursor"/>'
     )
-    return svg(h, "\n".join(body), css, "Umang Bagadi: I build LLM agents that prove their work before they act.")
+    return svg(h, "\n".join(body), css,
+               "Umang Bagadi. I build LLM agents that prove their work before they act. "
+               "AI engineer working on LLM agents, RAG and evals. B.Tech in AI, Nagpur, India.")
 
 
 # ------------------------------------------------------------- capabilities
