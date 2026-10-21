@@ -1,71 +1,86 @@
-<h1><img src="https://emojis.slackmojis.com/emojis/images/1531849430/4246/blob-sunglasses.gif?1531849430" width="30"/> Hey! Nice to see you.</h1>
-<!-- RAINBOW LINE TOP -->
-<img src="https://github.com/AnderMendoza/AnderMendoza/raw/main/assets/line-neon.gif" width="100%">
-<!-- Horizontal Divider -->
-  <img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif">
-  
-  <!-- Introduction -->
-  <div id="user-content-toc">
-    <ul align="center">
-      <summary><h1 style="display: inline-block">Hi 👋, I'm Umang</h1></summary>
-    </ul>
-  </div>
-  
-  <!-- Snake Animation -->
-  <div align="center">
-    <img src="https://github.com/1999AZZAR/1999AZZAR/blob/main/resources/img/grid-snake.svg" alt="snake" />
-  </div>
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="assets/hero-dark.svg">
+  <img alt="Umang Bagadi. I build LLM agents that prove their work before they act. An agent trace runs: the LLM proposes a root cause, code checks the claim against evidence, code checks policy, a human approves, code verifies recovery." src="assets/hero-light.svg" width="100%">
+</picture>
 
 <p align="center">
-  <samp> 
-    <picture> <img align="right" src="https://github.com/7oSkaaa/7oSkaaa/blob/main/Images/Right_Side.gif?raw=true" width = 250px></picture>
-     <br><br>
+  <a href="https://www.linkedin.com/in/umang-bagadi"><b>LinkedIn</b></a> &nbsp;·&nbsp;
+  <a href="https://x.com/BagadiUmang"><b>X / Twitter</b></a> &nbsp;·&nbsp;
+  <a href="#selected-work"><b>Selected work</b></a> &nbsp;·&nbsp;
+  <a href="#how-i-build"><b>How I build</b></a>
+</p>
 
-     
+Most agent demos trust whatever the model writes. Mine don't. I treat an LLM like a smart but fallible junior engineer: it reads, ranks and explains, and plain, tested code decides what counts as true, what's allowed, and whether it worked.
 
-![](https://komarev.com/ghpvc/?username=umangbagadi03&color=green) 
+## Selected work
 
-### I have technical experience and interest in -
-* Computer vision 
-* Natural Language Processing 
+<sub>🟪 the LLM proposes &nbsp; 🟨 code decides &nbsp; 🟩 a human approves &nbsp; ⤺ the agent corrects itself</sub>
 
-<h3 align="left">Languages and Tools:</h3>
-<p align="left"> <a href="https://flask.palletsprojects.com/" target="_blank"> <img src="https://www.vectorlogo.zone/logos/pocoo_flask/pocoo_flask-icon.svg" alt="flask" width="40" height="40"/> </a> <a href="https://www.python.org" target="_blank"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/python/python-original.svg" alt="python" width="40" height="40"/>  </a> <a href="https://git-scm.com/" target="_blank"> <img src="https://www.vectorlogo.zone/logos/git-scm/git-scm-icon.svg" alt="git" width="40" height="40"/> </a> <a href="https://heroku.com" target="_blank"> <img src="https://www.vectorlogo.zone/logos/heroku/heroku-icon.svg" alt="heroku" width="40" height="40"/> </a> <a  <a href="https://opencv.org/" target="_blank"> <img src="https://www.vectorlogo.zone/logos/opencv/opencv-icon.svg" alt="opencv" width="40" height="40"/> </a> <a  href="https://pytorch.org/" target="_blank"> <img src="https://www.vectorlogo.zone/logos/pytorch/pytorch-icon.svg" alt="pytorch" width="40" height="40"/> </a> <a href="https://www.mysql.com/" target="_blank"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/mysql/mysql-original-wordmark.svg" alt="mysql" width="40" height="40"/> </a> <a href="https://scikit-learn.org/" target="_blank"> <img src="https://upload.wikimedia.org/wikipedia/commons/0/05/Scikit_learn_logo_small.svg" alt="scikit_learn" width="40" height="40"/> </a> <a href="https://www.tensorflow.org" target="_blank"> <img src="https://www.vectorlogo.zone/logos/tensorflow/tensorflow-icon.svg" alt="tensorflow" width="40" height="40"/> </a> </p>
+<a href="https://github.com/umangbagadi03/incidentpilot">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="assets/card-incidentpilot-dark.svg">
+    <img alt="IncidentPilot: an on-call agent for production incidents that fact-checks its own root cause and changes nothing until a policy check and a human approve." src="assets/card-incidentpilot-light.svg" width="100%">
+  </picture>
+</a>
 
+<a href="https://github.com/umangbagadi03/argus">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="assets/card-argus-dark.svg">
+    <img alt="Argus: a multi-agent research assistant that plans, researches in parallel, writes a cited report, critiques its own draft and loops back to fill gaps." src="assets/card-argus-light.svg" width="100%">
+  </picture>
+</a>
 
+<a href="https://github.com/umangbagadi03/kasauti">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="assets/card-kasauti-dark.svg">
+    <img alt="Kasauti: scan a packaged-food label and get a personalised health verdict. Deterministic rules decide; the LLM only reads and explains." src="assets/card-kasauti-light.svg" width="100%">
+  </picture>
+</a>
 
- ---
-  <div>
-  <b>My GitHub Stats</b><br />
-    <a href="http://www.github.com/umangbagadi03"><img src="https://github-readme-stats.vercel.app/api?username=umangbagadi03&show_icons=true&hide=&count_private=true&title_color=0891b2&text_color=ffffff&icon_color=0891b2&bg_color=1c1917&hide_border=true&show_icons=true" alt="umangbagadi03's GitHub stats" /></a>
-    <a href="http://www.github.com/umangbagadi03"><img src="https://github-readme-streak-stats.herokuapp.com/?user=umangbagadi03&stroke=ffffff&background=1c1917&ring=0891b2&fire=0891b2&currStreakNum=ffffff&currStreakLabel=0891b2&sideNums=ffffff&sideLabels=ffffff&dates=ffffff&hide_border=true" /></a>
-    <a href="http://www.github.com/umangbagadi03"><img src="https://activity-graph.herokuapp.com/graph?username=umangbagadi03&bg_color=1c1917&color=ffffff&line=0891b2&point=ffffff&area_color=1c1917&area=true&hide_border=true&custom_title=GitHub%20Commits%20Graph" alt="GitHub Commits Graph" /></a>
-    <a href="https://github.com/umangbagadi03" align="left"><img src="https://github-readme-stats.vercel.app/api/top-langs/?username=umangbagadi03&langs_count=10&title_color=0891b2&text_color=ffffff&icon_color=0891b2&bg_color=1c1917&hide_border=true&locale=en&custom_title=Top%20%Languages" alt="Top Languages" /></a>
-  </div>
-  
-  
+## How I build
 
-<!--
-**umangbagadi03/umangbagadi03** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
+**01 · The LLM proposes, the code decides.**
+Models read, rank and explain. Verdicts, policies and "did it work?" are deterministic code you can unit-test.
 
-Here are some ideas to get you started:
+**02 · Every claim cites its evidence.**
+If a sentence can't point to the log line, source or label it came from, confidence drops and a human takes over.
 
-- 🔭 I’m currently working on ...
-- 🌱 I’m currently learning ...
-- 👯 I’m looking to collaborate on ...
-- 🤔 I’m looking for help with ...
-- 💬 Ask me about ...
-- 📫 How to reach me: ...
-- 😄 Pronouns: ...
+**03 · Nothing irreversible without a human.**
+Agents investigate with read-only tools. Changes pass a policy check, then pause for approval, even across restarts.
 
--->
+**04 · If it isn't evaluated, it doesn't work.**
+Adversarial scenarios (red herrings, failed first fixes, prompt injection, no-answer cases) run before I trust a demo.
+
+## Stack
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="assets/stack-dark.svg">
+  <img alt="Agents: LangGraph, LangChain, Google ADK, Pydantic. Models: Claude, Gemini, GPT, Ollama. Retrieval: Qdrant, hybrid RAG, Tavily. Serving: FastAPI, SSE, Streamlit. ML and CV: PyTorch, TensorFlow, scikit-learn, OpenCV, Detectron2. Core: Python, C++, SQL, Git." src="assets/stack-light.svg" width="100%">
+</picture>
+
+<details>
+<summary><b>Before agents: the 2021–2023 archive</b></summary>
+<br>
+
+Computer vision, NLP and classic ML, from my first years of building.
+
+| Project | What it is |
+|---|---|
+| [Dino game with facial recognition](https://github.com/umangbagadi03/Dino-game-using-facial-recognition) | Chrome's T-Rex game, played with facial expressions via OpenCV |
+| [AIPS-3 semantic search](https://github.com/umangbagadi03/AIPS-3) | AI-powered smart search: find the exact passage in a book or PDF |
+| [Auto-ML app](https://github.com/umangbagadi03/Auto-ML-App) | Bring a dataset; it handles features, model selection and tuning |
+| [MLOps](https://github.com/umangbagadi03/MLOPS) | A reproducible ML pipeline versioned with DVC |
+| [Stock market forecasting](https://github.com/umangbagadi03/Stock-Market-Forecasting) | Stacked-LSTM price forecasting |
+| [Twitter sentiment analysis](https://github.com/umangbagadi03/Twitter_Sentiment_Analysis) | NLP sentiment classifier for tweets |
+| [Song recommender](https://github.com/umangbagadi03/Song-Recommendation-System) | Spotify-style song recommendations, served as a web app |
+| [SMS spam classifier](https://github.com/umangbagadi03/SMS-SPAM-CLASSIFIER) | Spam vs ham with classic NLP features |
+| [Data structures & algorithms](https://github.com/umangbagadi03/Data_Structure_Algorithm) | C++ solutions from my DSA practice |
+
+</details>
 
 <br>
 
-<!-- RAINBOW LINE BOT -->
-<img src="https://github.com/AnderMendoza/AnderMendoza/raw/main/assets/line-neon.gif" width="100%">
-
------
-Credits: [Umang Bagadi](https://github.com/umangbagadi03)
-
-Last Edited on: 08/08/2023
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="assets/footer-dark.svg">
+  <img alt="The LLM proposes. The code decides." src="assets/footer-light.svg" width="100%">
+</picture>
