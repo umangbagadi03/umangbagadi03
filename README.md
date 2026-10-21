@@ -35,11 +35,11 @@ Agents start with read-only tools. Changes pass a policy check, then pause for a
 **04 · If it isn't evaluated, it doesn't work.**
 Adversarial scenarios (red herrings, failed first fixes, prompt injection, no-answer cases) run before I trust a demo.
 
-## Stack
+## The GenAI stack
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/stack-dark.svg">
-  <img alt="Agents: LangGraph, LangChain, Google ADK, Pydantic. Models: Claude, Gemini, GPT, Ollama. Retrieval: Qdrant, hybrid RAG, Tavily. Serving: FastAPI, SSE, Streamlit. ML and CV: PyTorch, TensorFlow, scikit-learn, OpenCV, Detectron2. Core: Python, C++, SQL, Git." src="assets/stack-light.svg" width="100%">
+  <img alt="The GenAI stack I build with. Models: Claude, GPT, Gemini, Llama via Ollama, LiteLLM, Hugging Face. Orchestration: LangGraph, LangChain, Google ADK, MCP, Instructor, Pydantic. Retrieval: Qdrant, sqlite-vec, hybrid BM25 plus dense search, sentence-transformers. Ingestion: Docling, pdfplumber, Trafilatura, Tavily search. Evals and tracing: Langfuse, LangSmith, OpenTelemetry, Prometheus, pytest evals. Serving: FastAPI, SSE streaming, Streamlit, Postgres, SQLite. ML foundations: PyTorch, Transformers, scikit-learn, TensorFlow, OpenCV. Core: Python, C++, SQL, Git." src="assets/stack-light.svg" width="100%">
 </picture>
 
 <br>

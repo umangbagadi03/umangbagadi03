@@ -246,47 +246,85 @@ def skills(t):
 
 # -------------------------------------------------------------------- stack
 
+# Layers of a GenAI system, from the model down to the foundations.
 STACK = [
-    ("agents", ["LangGraph", "LangChain", "Google ADK", "Pydantic"]),
-    ("models", ["Claude", "Gemini", "GPT", "Ollama"]),
-    ("retrieval", ["Qdrant", "hybrid RAG", "Tavily"]),
-    ("serving", ["FastAPI", "SSE", "Streamlit"]),
-    ("ml / cv", ["PyTorch", "TensorFlow", "scikit-learn", "OpenCV", "Detectron2"]),
-    ("core", ["Python", "C++", "SQL", "Git"]),
+    ("models", "reason", ["Claude", "GPT", "Gemini", "Llama · Ollama", "LiteLLM", "Hugging Face"]),
+    ("orchestration", "plan & act", ["LangGraph", "LangChain", "Google ADK", "MCP", "Instructor", "Pydantic"]),
+    ("retrieval", "ground", ["Qdrant", "sqlite-vec", "hybrid BM25 + dense", "sentence-transformers"]),
+    ("ingestion", "read", ["Docling", "pdfplumber", "Trafilatura", "Tavily search"]),
+    ("evals & tracing", "observe", ["Langfuse", "LangSmith", "OpenTelemetry", "Prometheus", "pytest evals"]),
+    ("serving", "ship", ["FastAPI", "SSE streaming", "Streamlit", "Postgres", "SQLite"]),
+    ("ml foundations", "train", ["PyTorch", "Transformers", "scikit-learn", "TensorFlow", "OpenCV"]),
+    ("core", "build", ["Python", "C++", "SQL", "Git"]),
 ]
 
 
 def stack(t):
-    lh = 38
-    h = 44 + len(STACK) * lh + 8
-    x0, xc = 32, 156
+    n = len(STACK)
+    lh, top = 40, 62
+    h = top + n * lh + 14
+    x0, rail, xc = 32, 168, 190
     fs = 12.5
     ch = fs * MONO_CH
-    css = base_style(t) + "@keyframes in{from{opacity:0}to{opacity:1}}"
-    body = [frame(t, h, dots=False)]
-    for r, (group, items) in enumerate(STACK):
-        y = 34 + r * lh
+    beat = 0.9  # seconds the pulse spends on each layer
+    cycle = n * beat
+    css = base_style(t) + f"""
+@keyframes rail{{from{{transform:translateY(0)}}to{{transform:translateY({(n-1)*lh}px)}}}}
+.pulse-dot{{animation:rail {cycle:.1f}s linear infinite}}
+"""
+    body = [frame(t, h)]
+    body.append(
+        f'<text x="{x0}" y="36" class="mono faint" font-size="11" letter-spacing="1.5">'
+        f"THE GENAI STACK I BUILD WITH</text>"
+        f'<text x="{W-x0}" y="36" class="mono faint" font-size="11" text-anchor="end" '
+        f'letter-spacing="1.5">REQUEST ↓ THROUGH EVERY LAYER</text>'
+    )
+    y_first = top + 13
+    body.append(
+        f'<line x1="{rail}" x2="{rail}" y1="{y_first}" y2="{y_first+(n-1)*lh}" '
+        f'stroke="{t["line"]}" stroke-width="2"/>'
+    )
+
+    for r, (layer, verb, items) in enumerate(STACK):
+        y = top + r * lh
+        cy = y + 13
+        on = r / n * 100
+        off = (r + 1) / n * 100
+        css += (
+            f"@keyframes r{r}{{0%,{max(on-0.01,0):.2f}%{{opacity:0}}{on+1:.2f}%,{off:.2f}%{{opacity:1}}"
+            f"{min(off+4,100):.2f}%,100%{{opacity:0}}}}"
+            f".r{r}{{opacity:0;animation:r{r} {cycle:.1f}s linear infinite}}"
+        )
         body.append(
-            f'<g style="animation:in .5s ease-out {r*0.12:.2f}s both">'
-            f'<text x="{x0}" y="{y+17}" class="mono faint" font-size="12">{group}</text>'
+            f'<text x="{x0}" y="{cy+1}" class="mono muted" font-size="12">{escape(layer)}</text>'
+            f'<text x="{x0}" y="{cy+15}" class="mono faint" font-size="10">{escape(verb)}</text>'
+            f'<text x="{x0}" y="{cy+1}" class="mono gold r{r}" font-size="12" font-weight="600">'
+            f"{escape(layer)}</text>"
+            f'<circle cx="{rail}" cy="{cy}" r="4" fill="{t["bg"]}" stroke="{t["faint"]}" stroke-width="1.5"/>'
         )
         x = xc
-        for item in items:
+        for k, item in enumerate(items):
             w = len(item) * ch + 22
             body.append(
                 f'<rect x="{x:.1f}" y="{y}" width="{w:.1f}" height="26" rx="13" fill="{t["panel"]}" '
                 f'stroke="{t["line"]}"/>'
+                f'<g class="r{r}" style="animation-delay:{k*0.06:.2f}s">'
+                f'<rect x="{x:.1f}" y="{y}" width="{w:.1f}" height="26" rx="13" fill="{t["gold"]}" '
+                f'fill-opacity="0.12" stroke="{t["gold"]}" stroke-opacity="0.7"/></g>'
                 f'<text x="{x + w/2:.1f}" y="{y+17}" class="mono text" font-size="{fs}" '
                 f'text-anchor="middle">{escape(item)}</text>'
             )
             x += w + 8
-        body.append("</g>")
-        if r < len(STACK) - 1:
-            body.append(
-                f'<line x1="{x0}" x2="{W-x0}" y1="{y+lh-6}" y2="{y+lh-6}" stroke="{t["line"]}" '
-                f'stroke-dasharray="2 4"/>'
-            )
-    return svg(h, "\n".join(body), css, "Stack: " + "; ".join(f"{g}: {', '.join(i)}" for g, i in STACK))
+        assert x - 8 <= W - x0, f"layer {layer!r} overflows by {x - 8 - (W - x0):.0f}px"
+
+    body.append(
+        f'<g class="pulse-dot"><circle cx="{rail}" cy="{y_first}" r="9" fill="{t["gold"]}" '
+        f'fill-opacity="0.18"/><circle cx="{rail}" cy="{y_first}" r="4.5" fill="{t["gold"]}"/></g>'
+    )
+    alt = "The GenAI stack I build with. " + " ".join(
+        f"{layer.capitalize()}: {', '.join(items)}." for layer, _, items in STACK
+    )
+    return svg(h, "\n".join(body), css, alt)
 
 
 # ------------------------------------------------------------------- footer
