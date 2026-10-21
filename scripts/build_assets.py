@@ -183,162 +183,65 @@ def hero(t):
     return svg(h, "\n".join(body), css, "Umang Bagadi: I build LLM agents that prove their work before they act.")
 
 
-# -------------------------------------------------------------------- cards
+# ------------------------------------------------------------- capabilities
 
-PROJECTS = [
-    dict(
-        slug="incidentpilot",
-        num="01",
-        name="IncidentPilot",
-        stack="python · langgraph · qdrant · fastapi",
-        tagline=[
-            "An on-call agent for production incidents that fact-checks its own root",
-            "cause, and changes nothing until a policy check and a human say yes.",
-        ],
-        nodes=[
-            ("alert", "io"), ("investigate", "llm"), ("analyze", "llm"), ("ground", "code"),
-            ("plan_fix", "llm"), ("policy", "code"), ("approve", "human"), ("verify", "code"),
-        ],
-        loop=(7, 1, "still broken → re-investigate"),
-        proof=["claim-level grounding", "prompt-injection guardrail", "6 adversarial evals"],
-    ),
-    dict(
-        slug="argus",
-        num="02",
-        name="Argus",
-        stack="python · langgraph · gemini · streamlit",
-        tagline=[
-            "A multi-agent research assistant: plans, researches in parallel, writes",
-            "a cited report, critiques its own draft and loops back to fill the gaps.",
-        ],
-        nodes=[
-            ("question", "io"), ("plan", "llm"), ("research ×N", "llm"), ("aggregate", "code"),
-            ("write", "llm"), ("critic", "llm"), ("review", "human"), ("finalize", "code"),
-        ],
-        loop=(5, 1, "gaps found → re-plan"),
-        stacked=2,
-        proof=["parallel fan-out", "self-critique loop", "resumable human review"],
-    ),
-    dict(
-        slug="kasauti",
-        num="03",
-        name="Kasauti",
-        stack="python · fastapi · langgraph · ollama",
-        tagline=[
-            "A touchstone for packaged food: scan a label, get a health verdict made",
-            "for you. Deterministic rules decide; the LLM only reads and explains.",
-        ],
-        nodes=[
-            ("label", "io"), ("extract", "llm"), ("analyze", "code"), ("enrich", "llm"),
-            ("score", "code"), ("explain", "llm"), ("verdict", "io"),
-        ],
-        loop=(3, 2, "unknown ingredient → re-check"),
-        proof=["rules decide, LLMs explain", "Claude · Gemini · GPT · Ollama", "36 offline tests"],
-    ),
+SKILLS = [
+    # title, role colour, two-line description
+    ("Agent workflows", "llm", ["Multi-step LangGraph agents: planners, parallel",
+                                "workers, critics and checkpointed state."]),
+    ("Grounding", "code", ["Every claim cites its evidence and code checks it.",
+                           "Weak support lowers confidence automatically."]),
+    ("Guardrails", "code", ["Read-only tools by default, policy checks before",
+                            "any change, prompt-injection quarantine."]),
+    ("Human-in-the-loop", "human", ["Agents pause for approval and resume later,",
+                                    "even after a restart."]),
+    ("Evaluation", "code", ["Adversarial scenarios scored on outcome, safety",
+                            "and grounding before anything ships."]),
+    ("Retrieval & models", "llm", ["Hybrid RAG on Qdrant. Claude, Gemini, GPT or a",
+                                   "local Ollama model behind one provider layer."]),
 ]
 
 
-def card(t, p):
-    h = 262
-    x0 = 32
-    css = base_style(t) + """
-@keyframes flow{to{stroke-dashoffset:-20}}
-.flow{animation:flow 1.1s linear infinite}
-@keyframes ping{0%{opacity:0}10%{opacity:1}30%,100%{opacity:0}}
+def skills(t):
+    cols, pad, gutter = 2, 32, 16
+    tw = (W - 2 * pad - gutter) / cols
+    th, vgap = 104, 14
+    rows = (len(SKILLS) + cols - 1) // cols
+    h = 2 * 28 + rows * th + (rows - 1) * vgap
+    n = len(SKILLS)
+    step = 0.9
+    css = base_style(t) + f"""
+@keyframes in{{from{{opacity:0;transform:translateY(4px)}}to{{opacity:1;transform:none}}}}
+@keyframes bar{{0%{{transform:scaleX(0)}}{100/n:.2f}%{{transform:scaleX(1)}}{100/n+6:.2f}%,100%{{transform:scaleX(1);opacity:0}}}}
 """
     body = [frame(t, h, dots=False)]
-
-    body.append(
-        f'<text x="{x0}" y="50" class="mono gold" font-size="13" font-weight="600">{p["num"]}</text>'
-        f'<text x="{x0+30}" y="51" class="sans text" font-size="26" font-weight="700" '
-        f'letter-spacing="-0.5">{p["name"]}</text>'
-        f'<text x="{W-x0}" y="48" class="mono faint" font-size="12" text-anchor="end">{p["stack"]}</text>'
-    )
-    for i, line in enumerate(p["tagline"]):
-        body.append(
-            f'<text x="{x0}" y="{82 + i*21}" class="sans muted" font-size="15">{escape(line)}</text>'
-        )
-
-    # pipeline
-    fs = 11.5
-    ch = fs * MONO_CH
-    widths = [len(n) * ch + 22 for n, _ in p["nodes"]]
-    gap = (W - 2 * x0 - sum(widths)) / (len(widths) - 1)
-    ny, nh = 142, 28
-    xs, x = [], x0
-    for w in widths:
-        xs.append(x)
-        x += w + gap
-
-    n = len(p["nodes"])
-    hop = 0.45
-    for i, ((label, kind), nx, w) in enumerate(zip(p["nodes"], xs, widths)):
+    for i, (title, kind, desc) in enumerate(SKILLS):
+        x = pad + (i % cols) * (tw + gutter)
+        y = 28 + (i // cols) * (th + vgap)
         colour = t[kind]
-        if i < n - 1:
-            ax1, ax2 = nx + w + 4, xs[i + 1] - 4
+        body.append(
+            f'<g style="animation:in .5s ease-out {i*0.1:.2f}s both">'
+            f'<rect x="{x:.1f}" y="{y}" width="{tw:.1f}" height="{th}" rx="10" fill="{t["panel"]}" '
+            f'stroke="{t["line"]}"/>'
+            f'<rect x="{x+18:.1f}" y="{y}" width="28" height="2" fill="{colour}"/>'
+            # a highlight sweeps across the tiles one after another
+            f'<rect x="{x+18:.1f}" y="{y}" width="{tw-36:.1f}" height="2" fill="{colour}" '
+            f'style="transform-box:fill-box;transform-origin:left;transform:scaleX(0);'
+            f'animation:bar {n*step:.1f}s ease-out {i*step:.1f}s infinite"/>'
+            f'<text x="{x+18:.1f}" y="{y+34}" class="mono gold" font-size="12" font-weight="600">'
+            f"{i+1:02d}</text>"
+            f'<text x="{x+44:.1f}" y="{y+35}" class="sans text" font-size="17" font-weight="700">'
+            f"{escape(title)}</text>"
+            f'<circle cx="{x+tw-22:.1f}" cy="{y+30}" r="4" fill="{colour}"/>'
+        )
+        for j, line in enumerate(desc):
             body.append(
-                f'<line x1="{ax1:.1f}" x2="{ax2:.1f}" y1="{ny+nh/2}" y2="{ny+nh/2}" '
-                f'stroke="{t["faint"]}" stroke-width="1.4" stroke-dasharray="3 2" class="flow"/>'
-                f'<path d="M{ax2-4:.1f},{ny+nh/2-3.5} L{ax2:.1f},{ny+nh/2} L{ax2-4:.1f},{ny+nh/2+3.5}" '
-                f'fill="none" stroke="{t["faint"]}" stroke-width="1.4"/>'
+                f'<text x="{x+18:.1f}" y="{y+62+j*20}" class="sans muted" font-size="13.5">'
+                f"{escape(line)}</text>"
             )
-        if p.get("stacked") and label.endswith("×N"):
-            for k in range(p["stacked"], 0, -1):
-                body.append(
-                    f'<rect x="{nx+3*k:.1f}" y="{ny-3*k}" width="{w:.1f}" height="{nh}" rx="7" '
-                    f'fill="{t["panel"]}" stroke="{colour}" stroke-opacity="{0.25+0.15*(2-k)}"/>'
-                )
-        dash = ' stroke-dasharray="3 3"' if kind == "io" else ""
-        body.append(
-            f'<rect x="{nx:.1f}" y="{ny}" width="{w:.1f}" height="{nh}" rx="7" fill="{t["panel"]}" '
-            f'stroke="{colour}" stroke-width="1.3"{dash}/>'
-        )
-        # a soft highlight travels along the pipeline
-        body.append(
-            f'<rect x="{nx:.1f}" y="{ny}" width="{w:.1f}" height="{nh}" rx="7" fill="{colour}" '
-            f'fill-opacity="0.18" opacity="0" style="animation:ping {n*hop:.2f}s linear '
-            f'{i*hop:.2f}s infinite"/>'
-        )
-        body.append(
-            f'<text x="{nx + w/2:.1f}" y="{ny+18.5}" class="mono {kind}" font-size="{fs}" '
-            f'text-anchor="middle" font-weight="600">{escape(label)}</text>'
-        )
-
-    # self-correction loop drawn under the pipeline
-    a, b, label = p["loop"]
-    xa = xs[a] + widths[a] / 2
-    xb = xs[b] + widths[b] / 2
-    yb = ny + nh + 4
-    depth = 30
-    lw = len(label) * 11 * MONO_CH
-    if abs(xa - xb) > lw + 40:
-        lx, anchor = (xa + xb) / 2, "middle"
-        mask = f'<rect x="{lx - lw/2 - 8:.1f}" y="{yb+depth*0.75-9}" width="{lw+16:.1f}" height="16" fill="{t["bg"]}"/>'
-    else:  # short hop: put the label beside the arc instead of on it
-        lx, anchor, mask = max(xa, xb) + 14, "start", ""
-    body.append(
-        f'<path d="M{xa:.1f},{yb} C{xa:.1f},{yb+depth} {xb:.1f},{yb+depth} {xb:.1f},{yb+3}" '
-        f'fill="none" stroke="{t["gold"]}" stroke-width="1.3" stroke-dasharray="4 3" class="flow"/>'
-        f'<path d="M{xb-4:.1f},{yb+9} L{xb:.1f},{yb+3} L{xb+4:.1f},{yb+9}" fill="none" '
-        f'stroke="{t["gold"]}" stroke-width="1.3"/>'
-        + mask
-        + f'<text x="{lx:.1f}" y="{yb+depth*0.75+3}" class="mono gold" font-size="11" '
-        f'text-anchor="{anchor}">{escape(label)}</text>'
-    )
-
-    # proof points
-    px = x0
-    for item in p["proof"]:
-        body.append(
-            f'<text x="{px}" y="{h-26}" class="mono" font-size="12">'
-            f'<tspan class="human">✓</tspan> <tspan class="muted">{escape(item)}</tspan></text>'
-        )
-        px += (len(item) + 2) * 12 * MONO_CH + 26
-    body.append(
-        f'<text x="{W-x0}" y="{h-26}" class="mono faint" font-size="12" text-anchor="end">'
-        f"view repo ↗</text>"
-    )
-    return svg(h, "\n".join(body), css, f"{p['name']}: {' '.join(p['tagline'])}")
+        body.append("</g>")
+    alt = "What I build: " + "; ".join(f"{s[0]}: {' '.join(s[2])}" for s in SKILLS)
+    return svg(h, "\n".join(body), css, alt)
 
 
 # -------------------------------------------------------------------- stack
@@ -416,8 +319,7 @@ def main():
         (OUT / f"hero-{name}.svg").write_text(hero(t))
         (OUT / f"stack-{name}.svg").write_text(stack(t))
         (OUT / f"footer-{name}.svg").write_text(footer(t))
-        for p in PROJECTS:
-            (OUT / f"card-{p['slug']}-{name}.svg").write_text(card(t, p))
+        (OUT / f"skills-{name}.svg").write_text(skills(t))
     print("wrote", len(list(OUT.glob("*.svg"))), "files to", OUT)
 
 

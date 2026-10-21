@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="860" height="396" viewBox="0 0 860 396" role="img" aria-label="What I build: Agent workflows: Multi-step LangGraph agents: planners, parallel workers, critics and checkpointed state.; Grounding: Every claim cites its evidence and code checks it. Weak support lowers confidence automatically.; Guardrails: Read-only tools by default, policy checks before any change, prompt-injection quarantine.; Human-in-the-loop: Agents pause for approval and resume later, even after a restart.; Evaluation: Adversarial scenarios scored on outcome, safety and grounding before anything ships.; Retrieval &amp; models: Hybrid RAG on Qdrant. Claude, Gemini, GPT or a local Ollama model behind one provider layer.">
+<title>What I build: Agent workflows: Multi-step LangGraph agents: planners, parallel workers, critics and checkpointed state.; Grounding: Every claim cites its evidence and code checks it. Weak support lowers confidence automatically.; Guardrails: Read-only tools by default, policy checks before any change, prompt-injection quarantine.; Human-in-the-loop: Agents pause for approval and resume later, even after a restart.; Evaluation: Adversarial scenarios scored on outcome, safety and grounding before anything ships.; Retrieval &amp; models: Hybrid RAG on Qdrant. Claude, Gemini, GPT or a local Ollama model behind one provider layer.</title>
+<style>
+.mono{font-family:ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace} .sans{font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif}
+.text{fill:#141417} .muted{fill:#5d5c64} .faint{fill:#a9a7a0}
+.gold{fill:#a86b00} .llm{fill:#6d3fe0} .code{fill:#a86b00}
+.human{fill:#15803d} .io{fill:#5d5c64}
+@media (prefers-reduced-motion: reduce){*{animation:none!important}}
+
+@keyframes in{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+@keyframes bar{0%{transform:scaleX(0)}16.67%{transform:scaleX(1)}22.67%,100%{transform:scaleX(1);opacity:0}}
+</style>
+<rect x="0.5" y="0.5" width="859" height="395" rx="14" fill="#fbfaf6" stroke="#e3e0d8"/>
+<g style="animation:in .5s ease-out 0.00s both"><rect x="32.0" y="28" width="390.0" height="104" rx="10" fill="#ffffff" stroke="#e3e0d8"/><rect x="50.0" y="28" width="28" height="2" fill="#6d3fe0"/><rect x="50.0" y="28" width="354.0" height="2" fill="#6d3fe0" style="transform-box:fill-box;transform-origin:left;transform:scaleX(0);animation:bar 5.4s ease-out 0.0s infinite"/><text x="50.0" y="62" class="mono gold" font-size="12" font-weight="600">01</text><text x="76.0" y="63" class="sans text" font-size="17" font-weight="700">Agent workflows</text><circle cx="400.0" cy="58" r="4" fill="#6d3fe0"/>
+<text x="50.0" y="90" class="sans muted" font-size="13.5">Multi-step LangGraph agents: planners, parallel</text>
+<text x="50.0" y="110" class="sans muted" font-size="13.5">workers, critics and checkpointed state.</text>
+</g>
+<g style="animation:in .5s ease-out 0.10s both"><rect x="438.0" y="28" width="390.0" height="104" rx="10" fill="#ffffff" stroke="#e3e0d8"/><rect x="456.0" y="28" width="28" height="2" fill="#a86b00"/><rect x="456.0" y="28" width="354.0" height="2" fill="#a86b00" style="transform-box:fill-box;transform-origin:left;transform:scaleX(0);animation:bar 5.4s ease-out 0.9s infinite"/><text x="456.0" y="62" class="mono gold" font-size="12" font-weight="600">02</text><text x="482.0" y="63" class="sans text" font-size="17" font-weight="700">Grounding</text><circle cx="806.0" cy="58" r="4" fill="#a86b00"/>
+<text x="456.0" y="90" class="sans muted" font-size="13.5">Every claim cites its evidence and code checks it.</text>
+<text x="456.0" y="110" class="sans muted" font-size="13.5">Weak support lowers confidence automatically.</text>
+</g>
+<g style="animation:in .5s ease-out 0.20s both"><rect x="32.0" y="146" width="390.0" height="104" rx="10" fill="#ffffff" stroke="#e3e0d8"/><rect x="50.0" y="146" width="28" height="2" fill="#a86b00"/><rect x="50.0" y="146" width="354.0" height="2" fill="#a86b00" style="transform-box:fill-box;transform-origin:left;transform:scaleX(0);animation:bar 5.4s ease-out 1.8s infinite"/><text x="50.0" y="180" class="mono gold" font-size="12" font-weight="600">03</text><text x="76.0" y="181" class="sans text" font-size="17" font-weight="700">Guardrails</text><circle cx="400.0" cy="176" r="4" fill="#a86b00"/>
+<text x="50.0" y="208" class="sans muted" font-size="13.5">Read-only tools by default, policy checks before</text>
+<text x="50.0" y="228" class="sans muted" font-size="13.5">any change, prompt-injection quarantine.</text>
+</g>
+<g style="animation:in .5s ease-out 0.30s both"><rect x="438.0" y="146" width="390.0" height="104" rx="10" fill="#ffffff" stroke="#e3e0d8"/><rect x="456.0" y="146" width="28" height="2" fill="#15803d"/><rect x="456.0" y="146" width="354.0" height="2" fill="#15803d" style="transform-box:fill-box;transform-origin:left;transform:scaleX(0);animation:bar 5.4s ease-out 2.7s infinite"/><text x="456.0" y="180" class="mono gold" font-size="12" font-weight="600">04</text><text x="482.0" y="181" class="sans text" font-size="17" font-weight="700">Human-in-the-loop</text><circle cx="806.0" cy="176" r="4" fill="#15803d"/>
+<text x="456.0" y="208" class="sans muted" font-size="13.5">Agents pause for approval and resume later,</text>
+<text x="456.0" y="228" class="sans muted" font-size="13.5">even after a restart.</text>
+</g>
+<g style="animation:in .5s ease-out 0.40s both"><rect x="32.0" y="264" width="390.0" height="104" rx="10" fill="#ffffff" stroke="#e3e0d8"/><rect x="50.0" y="264" width="28" height="2" fill="#a86b00"/><rect x="50.0" y="264" width="354.0" height="2" fill="#a86b00" style="transform-box:fill-box;transform-origin:left;transform:scaleX(0);animation:bar 5.4s ease-out 3.6s infinite"/><text x="50.0" y="298" class="mono gold" font-size="12" font-weight="600">05</text><text x="76.0" y="299" class="sans text" font-size="17" font-weight="700">Evaluation</text><circle cx="400.0" cy="294" r="4" fill="#a86b00"/>
+<text x="50.0" y="326" class="sans muted" font-size="13.5">Adversarial scenarios scored on outcome, safety</text>
+<text x="50.0" y="346" class="sans muted" font-size="13.5">and grounding before anything ships.</text>
+</g>
+<g style="animation:in .5s ease-out 0.50s both"><rect x="438.0" y="264" width="390.0" height="104" rx="10" fill="#ffffff" stroke="#e3e0d8"/><rect x="456.0" y="264" width="28" height="2" fill="#6d3fe0"/><rect x="456.0" y="264" width="354.0" height="2" fill="#6d3fe0" style="transform-box:fill-box;transform-origin:left;transform:scaleX(0);animation:bar 5.4s ease-out 4.5s infinite"/><text x="456.0" y="298" class="mono gold" font-size="12" font-weight="600">06</text><text x="482.0" y="299" class="sans text" font-size="17" font-weight="700">Retrieval &amp; models</text><circle cx="806.0" cy="294" r="4" fill="#6d3fe0"/>
+<text x="456.0" y="326" class="sans muted" font-size="13.5">Hybrid RAG on Qdrant. Claude, Gemini, GPT or a</text>
+<text x="456.0" y="346" class="sans muted" font-size="13.5">local Ollama model behind one provider layer.</text>
+</g>
+</svg>
